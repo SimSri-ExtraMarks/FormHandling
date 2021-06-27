@@ -1,0 +1,30 @@
+package com.formHandling.entities;
+
+import java.util.List;
+
+public class Data {
+	private String name;
+	private String email;
+	private long mobilenumber;
+	private String state;
+	private String gender;
+	private List<String> skills;
+	public long getMobilenumber() {
+		return mobilenumber;
+	}
+	public void setMobilenumber(long mobilenumber) {
+		this.mobilenumber = mobilenumber;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+}

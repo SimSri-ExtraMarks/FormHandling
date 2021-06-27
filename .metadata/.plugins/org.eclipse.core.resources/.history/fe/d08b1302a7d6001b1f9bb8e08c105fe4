@@ -1,0 +1,9 @@
+package com.formHandling.dao;
+
+import org.springframework.data.repository.CrudRepository;
+
+import com.formHandling.entities.Data;
+
+public interface Repository extends CrudRepository<Data, Long>{
+
+}

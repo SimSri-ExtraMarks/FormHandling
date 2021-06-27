@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Second Page</title>
+</head>
+<body>
+<h1>You are successfully registered!!</h1>
+<p th:text="'Hello ' + ${data.name} + '!'"/>
+ <p th:text="'Hello ' + ${data.email} + '!'"/>
+ <p th:text="'Hello ' + ${data.mobilenumber} + '!'"/>
+ <p th:text="'Hello ' + ${data.gender} + '!'"/>
+<h6>Kindly Check your details, if any discrepancy is found. Hit the edit button!!</h6>

@@ -1,0 +1,17 @@
+package com.formHandling.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.formHandling.entities.Data;
+
+@Controller
+public class MainController {
+	@GetMapping("/form")
+	public String registrationform(Model model) {
+		model.addAttribute("data", new Data());
+		return "form";
+	}
+
+}

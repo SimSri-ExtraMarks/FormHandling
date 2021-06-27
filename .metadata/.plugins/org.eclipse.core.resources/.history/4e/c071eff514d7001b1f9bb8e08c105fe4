@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Second Page</title>
+</head>
+<body>
+<h1>Welcome to second page</h1>
+<!-- <p th:text="'Hello ' + ${data} + '!'"/>
+ -->
+ <table>
+ <tr th:each="data ${students}">
+    <td th:text="${data.id}" />
+    <td th:text="${datat.name}" />
+</tr>
+</table>
