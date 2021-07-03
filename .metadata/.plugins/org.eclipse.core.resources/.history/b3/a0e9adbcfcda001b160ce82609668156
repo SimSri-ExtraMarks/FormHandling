@@ -1,0 +1,17 @@
+/*
+ * package com.formHandling.services;
+ * 
+ * public class Service {
+ * 
+ * }
+ */
+package com.formHandling.services;
+
+import java.util.List;
+
+import com.formHandling.entities.Data;
+
+public interface Service {
+	
+
+}

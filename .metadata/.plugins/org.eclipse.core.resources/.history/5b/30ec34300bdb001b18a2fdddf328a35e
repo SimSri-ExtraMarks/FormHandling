@@ -1,0 +1,33 @@
+package com.formHandling;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import com.formHandling.dao.Repository;
+import com.formHandling.entities.Data;
+
+@SpringBootApplication()
+public class FormHandlingApplication implements CommandLineRunner {
+	public static void main(String[] args) {
+		SpringApplication.run(FormHandlingApplication.class, args);
+	}
+
+	@Autowired
+	private Repository repository;
+
+	@Override
+	public void run(String... args) throws Exception {
+		/*
+		 * Data data1 = new Data("Simran", "simranjenny@gmail.com", "8171603367",
+		 * "Uttar Pradesh", "Female", "MySQL");
+		 * 
+		 * Data data1 = new Data();
+		 * 
+		 * repository.save(data1);
+		 */
+
+	}
+
+}

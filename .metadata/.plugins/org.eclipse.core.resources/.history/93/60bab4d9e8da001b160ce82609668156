@@ -1,0 +1,83 @@
+package com.formHandling.entities;
+
+import java.util.List;
+
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Length;
+
+
+@Entity
+public class Data {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	@NotNull(message="This field cannot be empty")
+	@Size(min=2, max=30, message="The length must be 2-30")
+	private String name;
+	@NotNull(message="This field cannot be null")
+	@Pattern(regexp = "[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+", message="Enter email in the format someone@xyz.com")
+	private String email;
+	@NotNull(message="This field cannot be null")
+	@Pattern(regexp = "^([+]\\d{2})?\\d{10}$", message="Enter 10 digit mobile number")
+	private String mobilenumber;
+	private String state;
+	private String gender;
+	 @ElementCollection(targetClass=String.class)
+	private List<String> skills;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getMobilenumber() {
+		return mobilenumber;
+	}
+	public void setMobilenumber(String mobilenumber) {
+		this.mobilenumber = mobilenumber;
+	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	public List<String> getSkills() {
+		return skills;
+	}
+	public void setSkills(List<String> skills) {
+		this.skills = skills;
+	}
+	@Override
+	public String toString() {
+		return "Data [id=" + id + ", name=" + name + ", email=" + email + ", mobilenumber=" + mobilenumber + ", state="
+				+ state + ", gender=" + gender + ", skills=" + skills + "]";
+	}
+	
+}

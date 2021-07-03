@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>User Data</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+				<h1 class="text-center">Update Form</h1>
+				<div class="card-body">
+					<form th:action="@{/userdata/{id}(id=${d.id})}" th:object="${d}">
+						<div class="form-group">
+							<label>Name</label> 
+							<input type="text" name="name"
+								th:field="*{name}" class="form-control"
+								placeholder="Enter your name" />
+						</div>
+						<div class="form-group">
+							<label>Email</label> <input type="text" name="email"
+								th:field="*{email}" class="form-control"
+								placeholder="Enter your Email" />
+						</div>
+						<div class="form-group">
+							<label>Mobile Number</label> <input type="text"
+								name="mobilenumber" th:field="*{mobilenumber}"
+								class="form-control" placeholder="Enter your Mobile Number" />
+						</div>
+						<div class="form-group">
+							<label>Select State</label> <select th:field="*{state}">
+								<option value="Uttar Pradesh">Uttar Pradesh</option>
+								<option value="Maharashtra">Maharashtra</option>
+								<option value="Rajasthan">Rajasthan</option>
+								<option value="Kerala">Kerala</option>
+							</select>
+						</div>
+						<div class="form-group">
+						<label>Select Skills</label>
+				<input type="checkbox" value="Java" th:field="*{skills}" />Java
+				<input type="checkbox" value="Springboot" th:field="*{skills}" />Springboot
+				<input type="checkbox" value="MySQL" th:field="*{skills}" />MySQL
+		<input type="checkbox" value="MongoDB" th:field="*{skills}" />MongoDB
+									</div>
+									
+					<div class="form-group">
+					<label>Select your Gender</label>
+				<input class="radio" type="radio" name="gender" value="female" th:field="*{gender}" />Female
+				<input class="radio" type="radio" name="gender" value="male" th:field="*{gender}" />Male
+					
+					</div>
+					<div class="box-footer">
+					<button type="submit">Submit</button>
+					</div>
+					</form>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!--  <form th:action="@{/submit}" method="post" th:object="${data}">-->
+					<div class="form-outline mb-3">
+						<label for="exampleInputName" class="form-label">Name</label> <input
+							type="text" name="name" id="exampleInputName"
+							class="form-control"/>
+							
+							 <!-- th:value="${Data.name}"  -->
+							<!-- <p th:each="e : ${#fields.errors('name')}" th:text="${e}"> -->
+					</div>
+					<div class="mb-3">
+						<label for="exampleInputEmail" class="form-label">Email
+							address</label> <input type="email" name="email" class="form-control"
+							id="exampleInputEmail">
+					</div>
+					<div class="mb-3">
+						<label for="exampleInputMobileNumber" class="form-label">Mobile
+							Number</label> <input type="number" name="mobilenumber"
+							class="form-control" id="exampleInputMobileNumber">
+
+						<div class="form-group mb-3">
+							<label for="exampleInputState">Select State:</label> <select
+								class="form-control" id="exampleInputState">
+								<option>Uttar Pradesh</option>
+								<option>Maharashtra</option>
+								<option>Rajasthan</option>
+								<option>Kerala</option>
+							</select>
+						</div>
+
+						<div class="checkbox mb-3">
+							<label for="exampleInputSkills">Choose your skills:</label>
+						</div>
+						<div class="checkbox mb-1">
+							<label><input type="checkbox" value="exampleInputSkills">Java</label>
+						</div>
+
+						<div class="checkbox mb-1">
+							<label><input type="checkbox" value="exampleInputSkills">Python</label>
+						</div>
+						<div class="checkbox mb-1">
+							<label><input type="checkbox" value="exampleInputSkills">Machine
+								Learning</label>
+
+							<div class="checkbox mb-1">
+								<label><input type="checkbox" value="exampleInputSkills">Databases</label>
+							</div>
+							<div class="checkbox mb-1">
+								<label><input type="checkbox" value="exampleInputSkills">AR/VR</label>
+							</div>
+
+							<div class="mb-3">
+								<label for="gender">Select Gender:</label> <label
+									class="radio-inline"><input type="radio"
+									name="gender" value="female">Female</label> <label
+									class="radio-inline"><input type="radio"
+									name="gender" value="male">Male</label> <label
+									class="radio-inline"><input type="radio"
+									name="gender" value="others">Others</label>
+							</div>
+
+
+							<button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+
+
+
+			</div>
+		</div>
+	</div>

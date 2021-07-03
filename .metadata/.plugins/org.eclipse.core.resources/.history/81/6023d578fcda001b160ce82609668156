@@ -1,0 +1,10 @@
+package com.formHandling.services;
+
+import java.util.List;
+
+import com.formHandling.entities.Data;
+
+public interface service {
+	List<Data> getAllDatas();
+
+}

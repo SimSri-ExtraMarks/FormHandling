@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8" />
 <title>Registration Form</title>
@@ -8,80 +8,69 @@
 	rel="stylesheet"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
+<style>
+.error {
+        color: red;
+    }</style>
 </head>
 <body>
-	<div class="container">
-		<div class="row mt-5">
-			<div class="col-md-6 offset-md-3">
-			
-				<form th:action="@{/submit}" method="post" th:object="${data}">
-					<div class="form-outline mb-3">
-						<label for="exampleInputName" class="form-label">Name</label> <input
-							type="text" name="name" id="exampleInputName"
-							class="form-control"/>
-							
-							 <!-- th:value="${Data.name}"  -->
-							<!-- <p th:each="e : ${#fields.errors('name')}" th:text="${e}"> -->
-					</div>
-					<div class="mb-3">
-						<label for="exampleInputEmail" class="form-label">Email
-							address</label> <input type="email" name="email" class="form-control"
-							id="exampleInputEmail">
-					</div>
-					<div class="mb-3">
-						<label for="exampleInputMobileNumber" class="form-label">Mobile
-							Number</label> <input type="number" name="mobilenumber"
-							class="form-control" id="exampleInputMobileNumber">
+	<form action="#" th:action="@{/submit}" th:object="${data}"
+		method="post">
+		<table>
+			<tr>
+				<td>Name:</td>
+				<td><input type="text" th:field="*{name}" /></td>
+				 <td th:if="${#fields.hasErrors('name')}" th:errorclass="error"
+					th:errors="*{name}" ></td> 
+					
+			</tr>
+			<tr>
+				<td>Email Address:</td>
+				<td><input type="text" th:field="*{email}" /></td>
+				<td th:if="${#fields.hasErrors('email')}" th:errorclass="error"
+					th:errors="*{email}" ></td> 
+			</tr>
+			<tr>
+				<td>Mobile Number:</td>
+				<td><input type="text" th:field="*{mobilenumber}" /></td>
+				<td th:if="${#fields.hasErrors('mobilenumber')}"
+					th:errors="*{mobilenumber}">Mobile number Error</td>
+			</tr>
+			<tr>
+				<td>Select State:</td>
+				<td><select th:field="*{state}">
+								<option value = "Uttar Pradesh">Uttar Pradesh</option>
+								<option value= "Maharashtra">Maharashtra</option>
+								<option value="Rajasthan">Rajasthan</option>
+								<option value="Kerala">Kerala</option>
+							</select></td>
+				<td th:if="${#fields.hasErrors('state')}"
+					th:errors="*{state}">State Error</td>
+			</tr>
+			<tr>
+				<td>Choose your skills:</td>
+				<td><input type="checkbox" value="Java" th:field="*{skills}" />Java</td>
+				</tr>
+				<tr><td></td>
+				<td><input type="checkbox" value="Springboot" th:field="*{skills}" />Springboot</td></tr>
+				<tr><td></td>
+				<td><input type="checkbox" value="MySQL" th:field="*{skills}" />MySQL</td></tr>
+				<tr><td></td><td><input type="checkbox" value="MongoDB" th:field="*{skills}" />MongoDB</td></tr>
+				<tr><td></td><td><input type="checkbox" value="ReactJS" th:field="*{skills}" />ReactJS</td>
+			</tr>
+			<tr>
+				<td>Choose your Gender:</td>
+				<td><input class="radio-inline" type="radio" name="gender" value="female" th:field="*{gender}" />Female</td>
+				<td><input class="radio-inline" type="radio" name="gender" value="male" th:field="*{gender}" />Male</td>
+				<!-- <td></td>
+				<td><input class="radio-inline" type="radio" name="gender" value="others" th:field="*{gender}" />Others</td>
+				 -->
+			</tr>
+			<tr>
+				<td><button type="submit">Submit</button></td>
+			</tr>
+		</table>
+	</form>
 
-						<div class="form-group mb-3">
-							<label for="exampleInputState">Select State:</label> <select
-								class="form-control" id="exampleInputState">
-								<option>Uttar Pradesh</option>
-								<option>Maharashtra</option>
-								<option>Rajasthan</option>
-								<option>Kerala</option>
-							</select>
-						</div>
-
-						<div class="checkbox mb-3">
-							<label for="exampleInputSkills">Choose your skills:</label>
-						</div>
-						<div class="checkbox mb-1">
-							<label><input type="checkbox" value="exampleInputSkills">Java</label>
-						</div>
-
-						<div class="checkbox mb-1">
-							<label><input type="checkbox" value="exampleInputSkills">Python</label>
-						</div>
-						<div class="checkbox mb-1">
-							<label><input type="checkbox" value="exampleInputSkills">Machine
-								Learning</label>
-
-							<div class="checkbox mb-1">
-								<label><input type="checkbox" value="exampleInputSkills">Databases</label>
-							</div>
-							<div class="checkbox mb-1">
-								<label><input type="checkbox" value="exampleInputSkills">AR/VR</label>
-							</div>
-
-							<div class="mb-3">
-								<label for="gender">Select Gender:</label> <label
-									class="radio-inline"><input type="radio"
-									name="gender" value="female">Female</label> <label
-									class="radio-inline"><input type="radio"
-									name="gender" value="male">Male</label> <label
-									class="radio-inline"><input type="radio"
-									name="gender" value="others">Others</label>
-							</div>
-
-
-							<button type="submit" class="btn btn-primary">Submit</button>
-				</form>
-
-
-
-			</div>
-		</div>
-	</div>
 </body>
 </html>

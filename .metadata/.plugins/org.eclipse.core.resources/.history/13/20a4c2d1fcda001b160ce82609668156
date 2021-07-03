@@ -1,0 +1,26 @@
+package com.formHandling.services.impl;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.formHandling.dao.Repository;
+import com.formHandling.entities.Data;
+import com.formHandling.services.Service;
+
+@Service
+public class serviceimpl implements Service{
+	private Repository repository;
+	
+	public serviceimpl(Repository repository) {
+		super();
+		this.repository = repository;
+	}
+
+	@Override
+	public List<Data> getAllDatas() {
+		// TODO Auto-generated method stub
+		return repository.findAll();
+	}
+
+}

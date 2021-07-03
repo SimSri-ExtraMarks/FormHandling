@@ -1,0 +1,44 @@
+package com.formHandling.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.formHandling.services.UserService;
+
+@Controller
+public class MainController{
+	private UserService userService;
+
+	  public MainController(UserService userService) { 
+	  super(); 
+	  this.userService =userService;
+	  }
+	
+	@GetMapping("/userdata")
+	public String listUsers(Model model) {
+		model.addAttribute("userdata", userService.getAllDatas());
+		System.out.println("Working fine!!");
+		return "data";
+	}
+}
+
+/*
+ * @Controller
+ * 
+ * public class MainController {
+ * 
+ * @Autowired private Repository repository;
+ * 
+ * @RequestMapping(value = "/form", method = RequestMethod.GET) public String
+ * registrationform(Model model) { model.addAttribute("data", new Data());
+ * return "form"; }
+ * 
+ * 
+ * @PostMapping("/submit") public String checkInfo(@Valid Data object,
+ * BindingResult bindingResult, Model model) {
+ * 
+ * if (bindingResult.hasErrors()) { return "form"; } Data data =
+ * repository.save(object); model.addAttribute("object", data); return
+ * "success"; } }
+ */
