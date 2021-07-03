@@ -23,16 +23,12 @@ public class MainController{
 	@GetMapping("/data")
 	public String listUsers(Model model) {
 		model.addAttribute("data", userService.getAllDatas());
-		//System.out.println("Working fine!!");
 		return "data";
 	}
 	@GetMapping("/data/new")
 	public String registrationform(Model model) {
-		/*
-		 * Data d = new Data(); model.addAttribute("d",d); return "registrationform";
-		 */
-		Data data = new Data();
-		model.addAttribute("data",data);
+		Data d = new Data();
+		model.addAttribute("d",d);
 		return "registrationform";
 	}
 	/*
@@ -45,8 +41,6 @@ public class MainController{
 	 * @RequestMapping(value = "/form", method = RequestMethod.GET) public String
 	 * registrationform(Model model) { model.addAttribute("data", new Data());
 	 * return "form"; }
-	 * 
-	 * 
 	 * @PostMapping("/submit") public String checkInfo(@Valid Data object,
 	 * BindingResult bindingResult, Model model) {
 	 * 
@@ -55,17 +49,17 @@ public class MainController{
 	 * "success"; } }
 	 */
 	@PostMapping("/data")
-	public String saveData(@Valid @ModelAttribute("data") Data data,BindingResult bindingResult, Model model) {
-		if (bindingResult.hasErrors()) { return "registrationform";}
-		userService.saveData(data);
+	public String saveData(@Valid Data data, BindingResult bindingResult, Model model) {
+		if (bindingResult.hasErrors()) { return "registrationform"; }
+		/*
+		 * model.addAttribute("data", data); userService.saveData(data); return
+		 * "redirect:/data";
+		 * @ModelAttribute("data")
+		 */
+		Data fix = userService.saveData(data);
+		model.addAttribute("data", fix);
 		return "redirect:/data";
 	}
-	
-	/*
-	 * @PostMapping("/data") public String checkInfo(@Valid Data d, BindingResult
-	 * bindingResult) { if (bindingResult.hasErrors()) { return "registrationform";
-	 * } return "redirect:/data"; }
-	 */
 	@GetMapping("/data/edit/{id}")
 	public String editForm(@PathVariable int id,Model model) {
 		model.addAttribute("data",userService.getDataById(id));

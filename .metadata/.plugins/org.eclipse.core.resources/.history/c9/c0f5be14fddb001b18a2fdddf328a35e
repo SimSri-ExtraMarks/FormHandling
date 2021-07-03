@@ -28,11 +28,8 @@ public class MainController{
 	}
 	@GetMapping("/data/new")
 	public String registrationform(Model model) {
-		/*
-		 * Data d = new Data(); model.addAttribute("d",d); return "registrationform";
-		 */
-		Data data = new Data();
-		model.addAttribute("data",data);
+		Data d = new Data();
+		model.addAttribute("d",d);
 		return "registrationform";
 	}
 	/*
@@ -55,17 +52,18 @@ public class MainController{
 	 * "success"; } }
 	 */
 	@PostMapping("/data")
-	public String saveData(@Valid @ModelAttribute("data") Data data,BindingResult bindingResult, Model model) {
-		if (bindingResult.hasErrors()) { return "registrationform";}
+	public String saveData(@ModelAttribute("data") Data data) {
 		userService.saveData(data);
 		return "redirect:/data";
 	}
 	
-	/*
-	 * @PostMapping("/data") public String checkInfo(@Valid Data d, BindingResult
-	 * bindingResult) { if (bindingResult.hasErrors()) { return "registrationform";
-	 * } return "redirect:/data"; }
-	 */
+	@PostMapping("/data")
+	public String checkInfo(@Valid Data d, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			return "registrationform";
+		}
+		return "redirect:/data";	
+	}
 	@GetMapping("/data/edit/{id}")
 	public String editForm(@PathVariable int id,Model model) {
 		model.addAttribute("data",userService.getDataById(id));

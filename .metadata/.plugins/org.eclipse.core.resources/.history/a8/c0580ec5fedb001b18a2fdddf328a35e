@@ -8,7 +8,7 @@
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
 	<style>
-.error{
+.error, .p {
         color: red;
     }</style>
 </head>
@@ -61,6 +61,8 @@
 				<input type="checkbox" value="MySQL" th:field="*{skills}" />MySQL
 		<input type="checkbox" value="MongoDB" th:field="*{skills}" />MongoDB
 									</div>
+									
+					
 					<div class="box-footer">
 					<button type="submit">Submit</button>
 					</div>

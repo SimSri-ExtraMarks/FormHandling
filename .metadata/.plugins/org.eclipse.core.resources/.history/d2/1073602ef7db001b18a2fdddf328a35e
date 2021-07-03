@@ -5,7 +5,6 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -19,6 +18,11 @@ import com.formHandling.services.UserService;
 public class MainController{
 	@Autowired
 	private UserService userService;
+
+	/*
+	 * public MainController(UserService userService) { super(); this.userService
+	 * =userService; }
+	 */
 	
 	@GetMapping("/data")
 	public String listUsers(Model model) {
@@ -28,44 +32,17 @@ public class MainController{
 	}
 	@GetMapping("/data/new")
 	public String registrationform(Model model) {
-		/*
-		 * Data d = new Data(); model.addAttribute("d",d); return "registrationform";
-		 */
-		Data data = new Data();
-		model.addAttribute("data",data);
+		Data d = new Data();
+		model.addAttribute("d",d);
 		return "registrationform";
+		
 	}
-	/*
-	 * @Controller
-	 * 
-	 * public class MainController {
-	 * 
-	 * @Autowired private Repository repository;
-	 * 
-	 * @RequestMapping(value = "/form", method = RequestMethod.GET) public String
-	 * registrationform(Model model) { model.addAttribute("data", new Data());
-	 * return "form"; }
-	 * 
-	 * 
-	 * @PostMapping("/submit") public String checkInfo(@Valid Data object,
-	 * BindingResult bindingResult, Model model) {
-	 * 
-	 * if (bindingResult.hasErrors()) { return "form"; } Data data =
-	 * repository.save(object); model.addAttribute("object", data); return
-	 * "success"; } }
-	 */
+	
 	@PostMapping("/data")
-	public String saveData(@Valid @ModelAttribute("data") Data data,BindingResult bindingResult, Model model) {
-		if (bindingResult.hasErrors()) { return "registrationform";}
+	public String saveData(@ModelAttribute("data") Data data) {
 		userService.saveData(data);
 		return "redirect:/data";
 	}
-	
-	/*
-	 * @PostMapping("/data") public String checkInfo(@Valid Data d, BindingResult
-	 * bindingResult) { if (bindingResult.hasErrors()) { return "registrationform";
-	 * } return "redirect:/data"; }
-	 */
 	@GetMapping("/data/edit/{id}")
 	public String editForm(@PathVariable int id,Model model) {
 		model.addAttribute("data",userService.getDataById(id));
@@ -88,3 +65,22 @@ public class MainController{
 	}
 }
 
+/*
+ * @Controller
+ * 
+ * public class MainController {
+ * 
+ * @Autowired private Repository repository;
+ * 
+ * @RequestMapping(value = "/form", method = RequestMethod.GET) public String
+ * registrationform(Model model) { model.addAttribute("data", new Data());
+ * return "form"; }
+ * 
+ * 
+ * @PostMapping("/submit") public String checkInfo(@Valid Data object,
+ * BindingResult bindingResult, Model model) {
+ * 
+ * if (bindingResult.hasErrors()) { return "form"; } Data data =
+ * repository.save(object); model.addAttribute("object", data); return
+ * "success"; } }
+ */

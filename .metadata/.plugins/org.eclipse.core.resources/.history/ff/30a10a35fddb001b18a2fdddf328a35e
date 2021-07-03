@@ -56,7 +56,7 @@ public class MainController{
 	 */
 	@PostMapping("/data")
 	public String saveData(@Valid @ModelAttribute("data") Data data,BindingResult bindingResult, Model model) {
-		if (bindingResult.hasErrors()) { return "registrationform";}
+		if (bindingResult.hasErrors()) { return "registrationform";
 		userService.saveData(data);
 		return "redirect:/data";
 	}
