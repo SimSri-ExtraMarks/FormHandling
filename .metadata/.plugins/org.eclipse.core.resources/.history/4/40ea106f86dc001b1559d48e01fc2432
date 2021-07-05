@@ -1,0 +1,91 @@
+package com.formHandling.controller;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import com.formHandling.entities.Data;
+import com.formHandling.services.UserService;
+
+@Controller
+public class MainController {
+	public static String uploadDirectory = System.getProperty("user.dir") + "/src/main/resources/static/images/";
+	@Autowired
+	private UserService userService;
+
+	@GetMapping("/data")
+	public String listUsers(Model model) {
+		model.addAttribute("data", userService.getAllDatas());
+		return "data";
+	}
+
+	
+	/*
+	 * @PostMapping("/data") public String addImage(Data
+	 * data, @RequestParam("profileImage") MultipartFile file, ModelMap model)
+	 * throws IOException { String fileName =
+	 * data.getName()+file.getOriginalFilename(); Path fileNameAndPath =
+	 * Paths.get(uploadDirectory, fileName); Files.write(fileNameAndPath,
+	 * file.getBytes()); data.setProfileImage(fileName); return "registrationform";
+	 * }
+	 */
+
+	@GetMapping("/data/new")
+	public String registrationform(Model model) {
+		Data data = new Data();
+		model.addAttribute("data", data);
+		return "registrationform";
+	}
+
+	//@PostMapping("/data")
+	@RequestMapping(value="/data", method = RequestMethod.POST)
+	public String saveData(@Valid @ModelAttribute("data") Data data, BindingResult bindingResult, Model model,@RequestParam("profileImage") MultipartFile file) 
+			throws IOException{
+		
+		String fileName =data.getName()+file.getOriginalFilename(); 
+		Path fileNameAndPath = Paths.get(uploadDirectory, fileName);
+		Files.write(fileNameAndPath,file.getBytes()); 
+		data.setProfileImage(fileName);
+		if (bindingResult.hasErrors()) {
+			return "registrationform";
+		}
+		userService.saveData(data);
+		return "redirect:/data";
+	}
+
+	@GetMapping("/data/edit/{id}")
+	public String editForm(@PathVariable int id, Model model) {
+		model.addAttribute("data", userService.getDataById(id));
+		return "editform";
+	}
+
+	@PostMapping("/data/{id}")
+	public String updateData(@PathVariable int id, @ModelAttribute("data") Data data, Model model) {
+		Data previousData = userService.getDataById(id);
+		previousData.setId(id);
+		previousData.setName(data.getName());
+		previousData.setEmail(data.getEmail());
+		previousData.setMobilenumber(data.getMobilenumber());
+		previousData.setState(data.getState());
+		previousData.setGender(data.getGender());
+		previousData.setSkills(data.getSkills());
+		userService.updateData(previousData);
+		return "redirect:/data";
+	}
+}

@@ -14,7 +14,7 @@
 			<div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
 				<h1 class="text-center">Update Form</h1>
 				<div class="card-body">
-					<form th:action="@{/data/{id}(id=${data.id})}" th:object="${data}" method="post">
+					<form th:action="@{/data/{id}(id=${data.id})}" th:object="${data}" method="post" enctype="multipart/form-data">
 						<div class="form-group">
 							<label>Name</label> 
 							<input type="text" name="name"
@@ -39,20 +39,23 @@
 								<option value="Kerala">Kerala</option>
 							</select>
 						</div>
-						<div class="form-group">
+									
+					<div class="form-group">
+					<label>Select your Gender</label>
+				<input class="radio" type="radio" name="gender" value="female" th:field="*{gender}" />Female
+				<input class="radio" type="radio" name="gender" value="male" th:field="*{gender}" />Male
+					</div>
+					
+					<div class="form-group">
 						<label>Select Skills</label>
 				<input type="checkbox" value="Java" th:field="*{skills}" />Java
 				<input type="checkbox" value="Springboot" th:field="*{skills}" />Springboot
 				<input type="checkbox" value="MySQL" th:field="*{skills}" />MySQL
 		<input type="checkbox" value="MongoDB" th:field="*{skills}" />MongoDB
 									</div>
-									
-					<div class="form-group">
-					<label>Select your Gender</label>
-				<input class="radio" type="radio" name="gender" value="female" th:field="*{gender}" />Female
-				<input class="radio" type="radio" name="gender" value="male" th:field="*{gender}" />Male
+						<label>Profile Image: </label>
+    					<input type="file" name="image" accept="image/png, image/jpeg" />
 					
-					</div>
 					<div class="box-footer">
 					<button type="submit">Submit</button>
 					</div>

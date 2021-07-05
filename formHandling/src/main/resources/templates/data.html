@@ -22,6 +22,7 @@
 					<th>STATE</th>
 					<th>GENDER</th>
 					<th>SKILLS</th>
+					<th>PROFILE_IMAGE</th>
 					<th>ACTIONS</th>
 				</tr>
 			</thead>
@@ -33,6 +34,7 @@
 					<td th:text="${do.state}"></td>
 					<td th:text="${do.gender}"></td>
 					<td th:text="${do.skills}"></td>
+					<td th:text="${do.profileImage}"></td>
 					<td><a th:href="@{/data/edit/{id}(id=${do.id})}"
 						class="btn btn-primary">Edit</a>
 						</td>

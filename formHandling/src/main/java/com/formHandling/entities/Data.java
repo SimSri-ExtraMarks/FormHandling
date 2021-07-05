@@ -31,6 +31,8 @@ public class Data {
 
 	private String gender;
 	
+	private String profileImage;
+	
 	@ElementCollection(targetClass=String.class)
 	private List<String> skills;
 	public int getId() {
@@ -76,10 +78,17 @@ public class Data {
 		this.skills = skills;
 	}
 	
+	public String getProfileImage() {
+		return profileImage;
+	}
+	public void setProfileImage(String profileImage) {
+		this.profileImage = profileImage;
+	}
+	
 	public Data(@Size(min = 2, max = 30, message = "The length must be 2-30") String name,
 			@Pattern(regexp = "[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+", message = "Enter email in the format someone@xyz.com") String email,
 			@Pattern(regexp = "^([+]\\d{2})?\\d{10}$", message = "Enter 10 digit mobile number") String mobilenumber,
-			String state, String gender, List<String> skills) {
+			String state, String gender, List<String> skills, String profileImage) {
 		super();
 		this.name = name;
 		this.email = email;
@@ -87,6 +96,7 @@ public class Data {
 		this.state = state;
 		this.gender = gender;
 		this.skills = skills;
+		this.profileImage = profileImage;
 	}
 	
 	public Data() {
@@ -95,7 +105,7 @@ public class Data {
 	@Override
 	public String toString() {
 		return "Data [id=" + id + ", name=" + name + ", email=" + email + ", mobilenumber=" + mobilenumber + ", state="
-				+ state + ", gender=" + gender + ", skills=" + skills + "]";
+				+ state + ", gender=" + gender + ", skills=" + skills + ", image=" + profileImage + "]";
 	}
 	
 }
